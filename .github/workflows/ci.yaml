@@ -14,7 +14,9 @@ jobs:
           cd lighthouse-advanced
           npm install
       - name: Test
-        run: npx wdio run .\wdio.conf.js --spec .\test\specs\lighthouse.lib.navigate.js .\test\specs\lighthouse.lib.timespan.js .\test\specs\lighthouse.lib.fullflow.js .\test\specs\lighthouse.lib.fullflow.mobile.js
+        run: |
+          cd lighthouse-advanced
+          npx wdio run .\wdio.conf.js --spec .\test\specs\lighthouse.lib.navigate.js .\test\specs\lighthouse.lib.timespan.js .\test\specs\lighthouse.lib.fullflow.js .\test\specs\lighthouse.lib.fullflow.mobile.js
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
