@@ -6,26 +6,41 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install
+
+      - name: Install latest Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
+
+      - name: Install NPM dependencies
         run: |
           cd lighthouse-advanced
           npm install
-      - name: Test
+
+      - name: Run Lighthouse Tests
         run: |
-          ls
           cd lighthouse-advanced
           npx wdio run ./wdio.conf.js --spec ./test/specs/lighthouse.lib.navigate.js ./test/specs/lighthouse.lib.timespan.js ./test/specs/lighthouse.lib.fullflow.js ./test/specs/lighthouse.lib.fullflow.mobile.js
+
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: logs
           path: logs
+
       - name: Deploy to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./html_reports # Directory where your HTML file is stored
+          publish_dir: ./html_reports
