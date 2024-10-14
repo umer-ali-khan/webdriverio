@@ -1,4 +1,4 @@
 node_modules/
 .vscode/settings.json
-lighthouse-service/package-lock.json
+package-lock.json
 *.txt

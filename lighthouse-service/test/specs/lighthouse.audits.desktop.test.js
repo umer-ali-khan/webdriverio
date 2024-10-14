@@ -30,7 +30,8 @@ const performanceScore = .80;
 const recommendedSpeedIndex = 1500; // SpeedIndex is below 1.5ms
 const recommendedPerfScore = .99; // Lighthouse Performance score is at 99% or higher
 
-const formFactor = {networkThrottling: 'online',
+const formFactor = {
+    networkThrottling: 'online',
     cpuThrottling: 1,
     cacheEnabled: false,
     formFactor: 'desktop'
@@ -40,7 +41,7 @@ describe('My Lighthouse application test', () => {
     let softAssert;
 
     before(async () => {
-        await browser.emulate('device', 'iPhone 8');
+        
         await browser.enablePerformanceAudits(formFactor);
         softAssert = new SoftAssert();
     })
