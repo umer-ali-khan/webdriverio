@@ -19,6 +19,9 @@ describe("Lighthouse flows", () => {
     });
     await page.waitForSelector("a[href*='logout']", { visible: true });
     await page.close();
-    writeFileSync("navigate-report.html", await flow.generateReport());
+    writeFileSync(
+      "../html_reports/navigate-report.html",
+      await flow.generateReport()
+    );
   });
 });

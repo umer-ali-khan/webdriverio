@@ -24,7 +24,10 @@ describe("Lighthouse flows", () => {
       await page.click("a[href*='logout']");
     });
 
-    writeFileSync("full-flow-report.html", await flow.generateReport());
+    writeFileSync(
+      "../html_reports/full-flow-report.html",
+      await flow.generateReport()
+    );
     await page.close();
   });
 });
