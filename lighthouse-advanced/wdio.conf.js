@@ -49,8 +49,16 @@ export const config = {
   //
   capabilities: [
     {
-      // capabilities for local browser web tests
-      browserName: "chrome", // or "firefox", "microsoftedge", "safari"
+      maxInstances: 5,
+      browserName: "chrome",
+      "goog:chromeOptions": {
+        args: [
+          "--headless", // Run in headless mode
+          "--disable-gpu", // Disable GPU usage
+          "--no-sandbox", // Bypass the sandbox in CI environments
+          "--disable-dev-shm-usage", // Use /tmp instead of /dev/shm
+        ],
+      },
     },
   ],
 
