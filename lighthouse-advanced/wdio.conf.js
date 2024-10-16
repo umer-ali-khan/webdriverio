@@ -49,7 +49,7 @@ export const config = {
   //
   capabilities: [
     {
-      maxInstances: 5,
+      maxInstances: 10,
       browserName: "chrome",
       "goog:chromeOptions": {
         args: [

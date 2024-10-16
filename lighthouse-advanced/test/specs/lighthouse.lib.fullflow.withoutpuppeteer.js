@@ -7,7 +7,7 @@ import LoginPage from "../pageobjects/login.page.js";
 import SecurePage from "../pageobjects/secure.page.js";
 
 describe("Lighthouse flows", () => {
-  it("should login with valid credentials", async () => {
+  it("should login with valid credentials using wdio commands", async () => {
     const puppeteer = await browser.getPuppeteer();
     let pages = await puppeteer.pages();
     console.log(pages.length);
