@@ -14,21 +14,18 @@ describe("Lighthouse flows", () => {
     const page = pages[0];
     const flow = await startFlow(page, { config: desktopConfig });
     await LoginPage.open();
-    await flow.snapshot();
-    await flow.startTimespan();
+    await flow.snapshot({ name: "Login Page" });
+    await flow.startTimespan({ name: "Login Flow" });
     await LoginPage.login("tomsmith", "SuperSecretPassword!");
     await expect(SecurePage.flashAlert).toBeExisting();
     await expect(SecurePage.flashAlert).toHaveText(
       expect.stringContaining("You logged into a secure area!")
     );
     await flow.endTimespan();
-    await flow.snapshot();
+    await flow.snapshot({ name: "Loged In Secure Page" });
     writeFileSync(
       "../html_reports/full-flow-without-puppeteer-report.html",
       await flow.generateReport()
     );
-    open("../html_reports/full-flow-without-puppeteer-report.html", {
-      wait: false,
-    });
   });
 });

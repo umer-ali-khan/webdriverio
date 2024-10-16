@@ -30,7 +30,7 @@ jobs:
       - name: Run Lighthouse Tests
         run: |
           cd lighthouse-advanced
-          npx wdio run ./wdio.conf.js --spec ./test/specs/lighthouse.lib.navigate.js ./test/specs/lighthouse.lib.timespan.js ./test/specs/lighthouse.lib.fullflow.js ./test/specs/lighthouse.lib.fullflow.mobile.js
+          npx wdio run ./wdio.conf.js --spec ./test/specs/lighthouse.lib.navigate.js ./test/specs/lighthouse.lib.timespan.js ./test/specs/lighthouse.lib.fullflow.js ./test/specs/lighthouse.lib.fullflow.mobile.js ./test/specs/lighthouse.lib.fullflow.withoutpuppeteer.js
 
       - uses: actions/upload-artifact@v4
         if: failure()
